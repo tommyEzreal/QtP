@@ -1,0 +1,8 @@
+[Task Description]
+Generate Summary of the given table based on the given Knowledge. You can refer to the Knowledge to make a complete paragraph-form summary. 
+
+Table: {table}
+
+Knowledge: {insights}
+
+Summary:

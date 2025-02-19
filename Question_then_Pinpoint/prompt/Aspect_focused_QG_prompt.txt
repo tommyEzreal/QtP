@@ -1,0 +1,6 @@
+[Task Description]
+Generate the intermediate knowledge for making the insightful summary of the table. First, the knowledge should contain multiple (Coarse-level Aspect). Then for each single (Coarse-level Aspect), multiple (Fine-level Question) should be generated. These knowledge should be a crucial cue to generate the insightful summary.  
+
+Table: {table}
+
+Response:

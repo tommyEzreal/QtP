@@ -1,0 +1,8 @@
+[Task Description]
+Your task is find insights from the table by answering for the given Question. You will be provided a Table and Question. Before finding answer from the table, carefully look up the given table and pinpoint the relevant columns and rows as the evidence for the answer.  
+
+Table: {table}
+
+Question: {question}
+
+Response:
