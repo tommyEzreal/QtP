@@ -2,7 +2,7 @@
 [[**📖 arXiv**](https://arxiv.org/abs/2406.12269)]  
 
 The data and code for the paper [Unveiling Implicit Table Knowledge with Question-Then-Pinpoint
-Reasoner for Insightful Table Summarization](https://arxiv.org/abs/2406.12269).  
+Reasoner for Insightful Table Summarization](https://arxiv.org/abs/2406.12269). (EMNLP Findings, 2024)  
 
 ## Motivation  
 <p align="center">
