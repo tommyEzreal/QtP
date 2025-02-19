@@ -10,6 +10,22 @@ Reasoner for Insightful Table Summarization](https://arxiv.org/abs/2406.12269).
 </p>  
 
 ## Usage  
+```
+# QtP reasoner input preprocess for training (InsTaSumm)
+sh scripts/reasoner_input_preprocess.sh
+# QtP reasoner instruction tuning (InsTaSumm)
+sh scripts/reasoner_train.sh
+```
+
+```
+# QtP reasoner insight inference (InsTaSumm)
+sh scripts/reaonser_inference.sh
+```
+
+```
+# Summary inference with generated insight (InsTaSumm)
+sh scripts/summary_inference.sh
+```
 
 ## Citation
 
