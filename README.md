@@ -4,6 +4,11 @@
 The data and code for the paper [Unveiling Implicit Table Knowledge with Question-Then-Pinpoint
 Reasoner for Insightful Table Summarization](https://arxiv.org/abs/2406.12269).  
 
+## Motivation  
+<p align="center">
+<img src="motivation.png" width="100%">
+</p> 
+
 ## Overview 
 <p align="center">
 <img src="framework.png" width="100%">
