@@ -3,7 +3,7 @@ from vllm import LLM, SamplingParams
 import json
 import argparse
 from transformers import AutoTokenizer
-import wandb
+# import wandb
 import re
 
 from table_linearize import IndexedRowTableLinearize
@@ -15,7 +15,7 @@ parser.add_argument("--save_path", type=str, required=True)
 
 args = parser.parse_args()
 
-wandb.init(project= "TableReasoning")
+# wandb.init(project= "TableReasoning")
 
 
 def dict_sort_by_id(item_list):

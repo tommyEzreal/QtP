@@ -39,12 +39,11 @@ from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 import dataclasses
 
 import os
-os.environ["WANDB_PROJECT"]="LLAMA2"
-os.environ["WANDB_LOG_MODEL"]="true"
-os.environ["WANDB_WATCH"]="false"
+# os.environ["WANDB_PROJECT"]="LLAMA2"
+# os.environ["WANDB_LOG_MODEL"]="end"
+# os.environ["WANDB_WATCH"]="false"
+os.environ["WANDB_DISABLED"] = "true"
 
-# from huggingface_hub import interpreter_login
-# interpreter_login()
 
 
 def is_ipex_available():
@@ -143,7 +142,7 @@ class TrainingArguments(transformers.Seq2SeqTrainingArguments):
     lora_alpha: float = field(default=16, metadata={"help": " Lora alpha."})
     lora_dropout: float = field(default=0.0, metadata={"help": "Lora dropout."})
     max_memory_MB: int = field(default=20000, metadata={"help": "Free memory per gpu."})
-    report_to: str = field(default="wandb", metadata={"help": "To use wandb or something else for reporting."})
+    # report_to: str = field(default="wandb", metadata={"help": "To use wandb or something else for reporting."})
     output_dir: str = field(default="./output", metadata={"help": "The output dir for logs and checkpoints"})
     optim: str = field(default="paged_adamw_32bit", metadata={"help": "The optimizer to be used"})
     per_device_train_batch_size: int = field(
@@ -334,12 +333,20 @@ def get_accelerate_model(args, checkpoint_dir):
         trust_remote_code=args.trust_remote_code,
         use_auth_token=args.use_auth_token,
     )
-    if tokenizer._pad_token is None:
+    # if tokenizer._pad_token is None:
+    #     smart_tokenizer_and_embedding_resize(
+    #         special_tokens_dict=dict(pad_token=DEFAULT_PAD_TOKEN),
+    #         tokenizer=tokenizer,
+    #         model=model,
+    #     )
+
+    if tokenizer.pad_token is None:
         smart_tokenizer_and_embedding_resize(
             special_tokens_dict=dict(pad_token=DEFAULT_PAD_TOKEN),
             tokenizer=tokenizer,
             model=model,
         )
+
     if "llama" in args.model_name_or_path or isinstance(tokenizer, LlamaTokenizer):
         # LLaMA tokenizer may not have correct special tokens set.
         # Check and add them if missing to prevent them from being parsed into different tokens.
@@ -354,11 +361,6 @@ def get_accelerate_model(args, checkpoint_dir):
             }
         )
     
-    # Edited Tokenizer
-    
-    # tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
-    # if tokenizer.pad_token is None:
-    #     tokenizer.pad_token = tokenizer.eos_token
     
     
     if not args.full_finetune:

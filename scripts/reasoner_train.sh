@@ -1,17 +1,16 @@
 # sh scripts/reasoner_train.sh
+# LLAMA instruction tuning ##
 
-## LLAMA instruction tuning ##
-
-export CUDA_VISIBLE_DEVICES=
+export CUDA_VISIBLE_DEVICES=0
 export OMP_NUM_THREADS=6
-export WANDB_PROJECT="TableReasoning"
+# export WANDB_PROJECT="TableReasoning"
 dataset_name='Question_then_Pinpoint/data/InsTaSumm/input_output_format/train_data/Reasoner_joint_instruction_tuning_set.json'
 base_model_name="meta-llama/Llama-2-7b-hf"
 model_last_name="meta-llama-2-7b-hf"
 model_path_to_be_saved="./Question_then_Pinpoint/qlora/checkpoints/meta-llama-2-7b-hf/QtP_Reasoner_joint_trained"
-export WANDB_NAME=$model_path_to_be_saved
+# export WANDB_NAME=$model_path_to_be_saved
 
-python ../Question_then_Pinpoint/qlora/qlora.py \
+python Question_then_Pinpoint/qlora/qlora.py \
 --output_dir ${model_path_to_be_saved} \
 --model_name_or_path $base_model_name \
 --use_auth \
@@ -51,9 +50,9 @@ python ../Question_then_Pinpoint/qlora/qlora.py \
 --dataset_format input-output \
 --train_on_source False \
 --do_predict False \
---report_to wandb \
+# --report_to wandb \
 
-## merge model
-# python Question_then_Pinpoint/qlora/merge.py \
-# --base_model_name_or_path meta-llama/Llama-2-7b-hf \
-# --peft_model_path Question_then_Pinpoint/qlora/checkpoints/meta-llama-2-7b-hf/QtP_Reasoner_joint_trained/checkpoint-8000
+# merge model
+python Question_then_Pinpoint/qlora/merge.py \
+--base_model_name_or_path meta-llama/Llama-2-7b-hf \
+--peft_model_path Question_then_Pinpoint/qlora/checkpoints/meta-llama-2-7b-hf/QtP_Reasoner_joint_trained/checkpoint-8000
